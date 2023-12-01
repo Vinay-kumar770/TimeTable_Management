@@ -1,0 +1,163 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style1.css">
+    <style>
+        .container {
+            padding: 20px;
+            /*display: flex;*/
+            justify-content: space-between;
+            /* flex-direction: column;  */
+            box-shadow: 2px 1px 1px rgba(0, 0, 0, .2), 0 .5px .5px rgba(0, 0, 0, .2);
+        }
+
+        .a {
+            margin-top: 230px;
+            font-size: 15px;
+            padding: -10px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="display: flex;flex-direction: column;">
+            <div style="max-width:100%;">
+                <img src="anitsbanner2.jpg" style="width:115%;height:auto;">
+                <!--<div style="display: flex; flex-direction: column;">
+                <a href="/home" class="heading">  <h1 style="margin-top: 0;">ANIL NEERUKONDA INSTITUTE OF TECHNOLOGY AND SCIENCES</h1></a>
+                <h2 style="margin-bottom: 0; color: var(--black); font-size: 18px;" >DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING</h2>
+                150
+                1580
+                </div>-->
+            </div>
+
+            <div>
+                <a href="coordinate.html"><button class="btn btn-1">ADMIN LOGIN</button></a>
+                <a href="adashboard.html"><button class="btn btn-1"> TIME TABLE </button></a>
+                <a href="log.html"><button class="btn btn-1"> Faculty Login </button></a>
+            </div>
+        </div>
+    </header>
+    <!--data-->
+    <div class="a container" style="font-size: 25px;">
+        <h4 id="date"><%= date %></h4>
+        <h4 id="day"><%= day %></h4>
+        <h4 id="clock"></h4>
+    </div>
+    <div class="container table-container" style="display:flex;row-gap:100px;">
+        <div>
+            <form action="/" method="POST">
+            <label for="date">Select a date:</label>
+            <input type="date" id="date" name="date">
+            <button id="s1" type="submit">Submit</button>
+            </form>
+            <style>
+                /* Style the label */
+                label {
+                    display: block;
+                    margin-bottom: 10px;
+                }
+
+                /* Style the date input */
+                input[type="date"] {
+                    padding: 10px;
+                    border: none;
+                    border-radius: 5px;
+                    background-color: #f2f2f2;
+                    font-size: 16px;
+                    color: #555;
+                }
+
+                /* Style the calendar icon */
+                input[type="date"]::-webkit-calendar-picker-indicator {
+                    position: relative;
+                    background-color: transparent;
+                    width: 30px;
+                    height: 30px;
+                    color: #555;
+                }
+
+                input[type="date"]::-webkit-calendar-picker-indicator:before {
+                    content: "\1F4C5";
+                    font-size: 20px;
+                    position: absolute;
+                    top: 4px;
+                    left: 4px;
+                }
+
+                input[type="date"]::-webkit-calendar-picker-indicator:hover {
+                    cursor: pointer;
+                }
+                #s1{
+                    margin-top: 5px;
+                    margin-left: 5px;
+                    color:lightblue;
+                    background-color: green;
+                    height: 25px;
+                    width:50px;
+                }
+            </style>
+        </div>
+        <div style="position: relative;float: right;">
+            <table border="1" cellspacing="0" cellpadding="5">
+                <tr>
+                    <th>Faculty Name</th>
+                    <th>8:40-9:30</th>
+                    <th>9:30-10:20</th>
+                    <th>10:20-11:10</th>
+                    <th>11:10-12:00</th>
+                    <th>12:50-1:40</th>
+                    <th>1:40-2:30</th>
+                    <th>2:30-3:20</th>
+                    <th>3:20-4:10</th>
+                </tr>
+                <% var k=0; %>
+                    <% while(k < result.length) { %>
+
+                        <tr>
+                            <th>
+                                <%= result[k].faculty %>
+                            </th>
+                            <% for (var i=1; i <=8; i++) { %>
+                                <% var found=false; %>
+                                    <% for (var j=0; j < results.length; j++) { %>
+                                        <% if (results[j].faculty==result[k].faculty && results[j].hour==i) { %>
+                                            <% if(results[j].year !='' && results[j].subject !='' ) { %>
+                                                <th>
+                                                    <%= results[j].subject %> - <%= results[j].year %>
+                                                            <%= results[j].section %>
+                                                </th>
+                                                <% } else { %>
+                                                    <th>-</th>
+                                                    <% } %>
+                                                        <% found=true; %>
+                                                            <% break; %>
+                                                                <% } %>
+                                                                    <% } %>
+                                                                        <% if (!found) { %>
+                                                                            <th>-</th>
+                                                                            <% } %>
+                                                                                <% } %>
+                        </tr>
+                        <% k++; %>
+                            <% } %>
+                                <!-- Add more rows for other faculties -->
+            </table>
+        </div>
+    </div>
+    <script>
+        setInterval(Digitalclock, 1000);
+        const date = new Date();
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const day = days[date.getDay()];
+        const d = date.getDate();
+        const m = date.getMonth();
+        const y = date.getFullYear();
+        //document.getElementById("date").innerHTML = "Date: " + d + "." + m + "." + y;
+    </script>
+</body>
+
+</html>

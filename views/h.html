@@ -1,0 +1,90 @@
+<table id="my-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Occupation</th>
+        <th>Salary</th>
+        <th>Location</th>
+        <th>Education</th>
+        <th>Experience</th>
+        <th>Hobbies</th>
+        <th>Interests</th>
+        <th>Languages</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Doe</td>
+        <td>30</td>
+        <td>Developer</td>
+        <td>$80,000</td>
+        <td>New York</td>
+        <td>Bachelor's</td>
+        <td>5 years</td>
+        <td>Reading</td>
+        <td>Traveling</td>
+        <td>English, Spanish</td>
+      </tr>
+      <tr>
+        <td>John Doe</td>
+        <td>32</td>
+        <td>Manager</td>
+        <td>$100,000</td>
+        <td>New York</td>
+        <td>Master's</td>
+        <td>7 years</td>
+        <td>Cooking</td>
+        <td>Hiking</td>
+        <td>English, French</td>
+      </tr>
+      <tr>
+        <td>Jane Smith</td>
+        <td>25</td>
+        <td>Designer</td>
+        <td>$60,000</td>
+        <td>Los Angeles</td>
+        <td>Bachelor's</td>
+        <td>3 years</td>
+        <td>Painting</td>
+        <td>Camping</td>
+        <td>English, Mandarin</td>
+      </tr>
+      <tr>
+        <td>Mike Johnson</td>
+        <td>40</td>
+        <td>Manager</td>
+        <td>$120,000</td>
+        <td>Chicago</td>
+        <td>Ph.D.</td>
+        <td>10 years</td>
+        <td>Hiking</td>
+        <td>Photography</td>
+        <td>English, German</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <script>
+    const table = document.getElementById('my-table');
+    let prevValues = new Array(table.rows[0].cells.length).fill('');
+  
+    for (let i = 0; i < table.rows[0].cells.length; i++) {
+      const currentValues = Array.from(table.rows).slice(1).map(row => row.cells[i].textContent);
+      
+      for (let j = 1; j < table.rows.length; j++) {
+        if (currentValues[j - 1] === prevValues[i]) {
+          table.rows[j].cells[i].classList.add('collapsed');
+        } else {
+          prevValues[i] = currentValues[j - 1];
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    .collapsed {
+      display: none;
+    }
+  </style>
+  
